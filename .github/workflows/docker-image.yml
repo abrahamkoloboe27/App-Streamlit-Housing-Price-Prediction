@@ -26,7 +26,40 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Tag Docker Image
-        run: docker tag zach27/housing-price-prediction:$(date +%s) ${{ secrets.DOCKERHUB_USERNAME }}/zach27/housing-price-prediction:$(date +%s)
+        run: docker tag zach27/housing-price-prediction:$(date +%s) ${{ secrets.DOCKERHUB_USERNAME }}/zach27/housing-price-predictionname: Docker Image for Streamlit App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Define environment variables for the job
+    env:
+      TIMESTAMP: ${{ github.run_id }}
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag my-image-name:${{ env.TIMESTAMP }}
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Tag Docker Image
+        run: docker tag my-image-name:${{ env.TIMESTAMP }} ${{ secrets.DOCKERHUB_USERNAME }}/my-image-name:${{ env.TIMESTAMP }}
+
+      - name: Push Docker Image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image-name:${{ env.TIMESTAMP }}:$(date +%s)
 
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/zach27/housing-price-prediction:$(date +%s)
