@@ -1,4 +1,4 @@
-name: Doker Image for Streamlit App
+name: Docker Image for Streamlit App
 
 on:
   push:
@@ -19,10 +19,11 @@ jobs:
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
   publish:
+    needs: build
     runs-on: ubuntu-latest
-
     steps:
+    - uses: actions/checkout@v4
     - name: Publish the Docker image to Docker Hub
       run: |
-        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-        docker push my-image-name:$(date +%s)
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker push my-image-name:$(date +%s)
