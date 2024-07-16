@@ -24,7 +24,7 @@ if st.sidebar.toggle("About the author"):
 
                     Bonjour,
 
-                    Je suis Abraham, un Data Scientist et Ingénieur en Mathématiques et Modélisation. 
+                    Je suis Abraham KOLOBOE, un Data Scientist et Ingénieur en Mathématiques et Modélisation. 
                     Mon expertise se situe dans les domaines des sciences de données et de l'intelligence artificielle. 
                     Avec une approche technique et concise, je m'engage à fournir des solutions efficaces et précises dans mes projets.
                             
