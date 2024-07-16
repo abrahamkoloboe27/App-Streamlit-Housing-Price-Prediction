@@ -17,7 +17,6 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-        - name: Publish the Docker image to Docker Hub
     - uses : actions/checkout@v4
     - name : Publish the Docker Image
       run: |
