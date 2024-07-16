@@ -16,13 +16,13 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag housing-price-prediction:app_streamlit
+        docker build . --file Dockerfile --tag zach27/housing-price-prediction:app_streamlit
         docker images -a
     - uses : actions/checkout@v4
     - name : Publish the Docker Image
       run: |
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-            docker pull housing-price-prediction:app_streamlit
+            docker pull zach27/housing-price-prediction:app_streamlit
     - name: List local Docker images after push
       run: docker images
   
