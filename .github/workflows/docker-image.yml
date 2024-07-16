@@ -22,7 +22,7 @@ jobs:
     - name : Publish the Docker Image
       run: |
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-            docker push housing-price-prediction:app_streamlit
+            docker pull housing-price-prediction:app_streamlit
     - name: List local Docker images after push
       run: docker images
   
