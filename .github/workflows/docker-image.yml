@@ -17,18 +17,13 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: List local Docker images
-      run: docker images
-
-    - name: Publish the Docker image to Docker Hub
+        - name: Publish the Docker image to Docker Hub
+    - uses : actions/checkout@v4
+    - name : Publish the Docker Image
       run: |
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker push my-image-name:$(date +%s)
+            echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+            docker push my-image-name:$(date +%s)
     - name: List local Docker images after push
       run: docker images
+  
+    
