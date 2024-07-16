@@ -17,6 +17,8 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: List local Docker images
+      run: docker images
 
   publish:
     needs: build
@@ -27,3 +29,5 @@ jobs:
       run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
           docker push my-image-name:$(date +%s)
+    - name: List local Docker images after push
+      run: docker images
