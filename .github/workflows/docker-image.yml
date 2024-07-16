@@ -1,4 +1,4 @@
-name: Doker Image for Streamlit App
+name: Doker Image for Streamlit App update
 
 on:
   push:
