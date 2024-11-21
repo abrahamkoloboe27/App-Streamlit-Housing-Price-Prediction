@@ -42,7 +42,7 @@ if st.sidebar.checkbox("À propos de l'auteur"):
     with st.expander("Auteur", True):
         c1, c2 = st.columns([1, 2])
         with c1:
-            st.image("img/About_the_author.png", width=150)
+            st.image("img/About the author.png", width=150)
         with c2:
             st.header("**S. Abraham Z. KOLOBOE**")
             st.markdown("""
