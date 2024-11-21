@@ -34,7 +34,7 @@ if st.sidebar.toggle("About the author"):
                         
                                         """)
 # Define the API endpoint
-API_ENDPOINT = st.text_input("API Endpoint", value="http://api:8000/predict")
+API_ENDPOINT = st.text_input("API Endpoint", value="https://abrahamklb-housing-api.hf.space/predict")
 
 # Define the Streamlit app
 def main():
